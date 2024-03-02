@@ -1,4 +1,4 @@
-import { Await, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import {RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Layout from './components/layout'
 import LoadingScreen from './components/loadingScreen'
 import Home from './routes/home'
@@ -9,11 +9,15 @@ import styled, { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 import { useEffect, useState } from 'react'
 import { auth } from './routes/firebase'
+import ProtectedRoute from './components/protected-route'
+import EmailResetPassword from './routes/emailResetPassword'
 
 const router=createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (<ProtectedRoute>
+      <Layout />
+    </ProtectedRoute>),
     children: [
       {
         path: "",
@@ -32,8 +36,12 @@ const router=createBrowserRouter([
   {
     path: "/createAccount",
     element: <CreateAccount />
+  },
+  {
+    path: "/emailResetPassword",
+    element: <EmailResetPassword />
   }
-])
+]);
 const GlobalStyles = createGlobalStyle`
 ${reset};
 * {
