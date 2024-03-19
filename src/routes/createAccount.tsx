@@ -58,11 +58,11 @@ export default function CreateAccount(){
                 <Input type="submit" value={isLoading? "Loading..." : "Create Account"} />
             </Form>
             {error!==""? <Error>{error}</Error> : null}
+            <GoogleButton />
             <Switcher>
                 Aready have an Account?{""}
                 <Link to="/login">Log in &rarr;</Link>
             </Switcher>
-            <GoogleButton />
         </Wrapper>
 
     );
